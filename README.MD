@@ -8,7 +8,7 @@
 To install ,ion-currencymask run:
 
 ```bash
-$ npm install @pluritech/ion-currencymask --save
+$ npm install @husfns/ion-currencymask --save
 ```
 
 ## Consuming your library
@@ -23,7 +23,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HomePage } from '../pages/home/home';
 
 // Import the library
-import { IonCurrencyMaskModule } from '@pluritech/ion-currencymask';
+import { IonCurrencyMaskModule } from '@husfns/ion-currencymask';
 
 @NgModule({
   declarations: [
@@ -96,7 +96,7 @@ Feel free to make your pull request, chip in to suggestion or report issues.
 
 ## Thanks
 We used the core code made by [Marlos Irapuan](https://github.com/marlosirapuan) inspired on http://jsbin.com/heqeduyi/1/edit?html,output and we made some improvement to separate it into pieces of thousands. 
-More info see: [MaskMoney no Ionic 2](https://marlosirapuan.com/maskmoney-no-ionic-2/)
+More info see: [MaskMoney no Ionic 4]()
 
 ## License
 

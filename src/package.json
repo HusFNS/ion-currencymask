@@ -1,9 +1,9 @@
 {
-  "name": "@pluritech/ion-currencymask",
+  "name": "@husfns/ion-currencymask",
   "version": "1.0.4",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Pluritech/ion-currencymask"
+    "url": "https://github.com/husfns/ion-currencymask"
   },
   "author": {
     "name": "Lucas Correa",
@@ -14,7 +14,7 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Pluritech/ion-currencymask/issues"
+    "url": "https://github.com/husfns/ion-currencymask/issues"
   },
   "main": "ion-currencymask.umd.js",
   "module": "ion-currencymask.js",
