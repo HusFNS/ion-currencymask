@@ -21,6 +21,8 @@ export class IonCurrencyMaskComponent implements ControlValueAccessor {
   @Input() clearInput = false;
   @Input() lastChild = false;
   @Input() disabled = false;
+  @Input() noDecimals = false;
+  @Input() reverse = false;
 
   public valueIonInput: string;
 
@@ -34,7 +36,7 @@ export class IonCurrencyMaskComponent implements ControlValueAccessor {
   public registerOnTouched() {}
 
   public writeValue(obj: number) {
-    this.valueIonInput = this.currencyMask.detectAmountReverse(obj);
+    this.valueIonInput = this.currencyMask.detectAmountReverse(obj, this.reverse, this.noDecimals);
     if (obj) {
       this.keyUpEvent(null);
       this.value = obj;
@@ -49,7 +51,8 @@ export class IonCurrencyMaskComponent implements ControlValueAccessor {
 
   public onChange(event) {
     if (this.valueIonInput) {
-      this.value = Number.parseFloat(this.valueIonInput.replace(/[\.]/g, '').replace(/[,]/g, '.'));
+      // tslint:disable-next-line:max-line-length
+      this.value = this.reverse ? Number.parseFloat(this.valueIonInput.replace(/[\,]/g, '')) : Number.parseFloat(this.valueIonInput.replace(/[\.]/g, '').replace(/[,]/g, '.'));
     } else {
       this.value = null;
     }
@@ -57,14 +60,14 @@ export class IonCurrencyMaskComponent implements ControlValueAccessor {
   }
 
   public keyUpEvent(event) {
-    this.valueIonInput = this.currencyMask.detectAmount(this.valueIonInput);
+    // tslint:disable-next-line:max-line-length
+    const valueToPass = this.reverse ? this.valueIonInput.replace(/(\,)/g, '|').replace(/(\.)/g, ',').replace(/(\|)/g, '.') : this.valueIonInput;
+    this.valueIonInput = this.currencyMask.detectAmount(valueToPass, this.noDecimals);
+    if (this.valueIonInput && this.reverse) {
+      this.valueIonInput = this.valueIonInput.replace(/(\.)/g, '|').replace(/(\,)/g, '.').replace(/(\|)/g, ',');
+    }
     this.onChange(event);
   }
-
-  public getAttrLabel(type: string) {
-    return this.typeLabel === type;
-  }
-
   public getAttrClearInput() {
     return this.clearInput ? '' : null;
   }
@@ -72,5 +75,4 @@ export class IonCurrencyMaskComponent implements ControlValueAccessor {
   public getAttrPlaceholder() {
     return this.placeholder ? this.placeholder : '';
   }
-
 }
